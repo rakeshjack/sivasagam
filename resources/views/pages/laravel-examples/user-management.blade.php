@@ -55,8 +55,14 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="{{ asset('assets') }}/img/team-2.jpg"
+                                                        @if ($category->catimages->isNotEmpty())
+                                                                    @foreach ($category->catimages as $image)
+                                                                        <img src="{{ config('app.url_dev').'/storage/app/public/'.$image->path }}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                                    @endforeach
+                                                            @else
+                                                                <img src="{{ asset('assets') }}/img/team-2.jpg"
                                                             class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                            @endif
                                                     </div>
 
                                                 </div>

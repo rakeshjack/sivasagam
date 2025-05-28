@@ -42,6 +42,7 @@ class ProfileController extends Controller
             'name' =>$request->name,
             'fullname' =>$request->name
         ]);
+        if ($request->hasFile('images')) {
         foreach ($request->file('images') as $image) {
             $path = $image->store('images', 'public');
             Catimage::create([
@@ -50,6 +51,7 @@ class ProfileController extends Controller
                 'path' => $path,
             ]);
         }
+    }
         return redirect()->route('user-management');
     }
 }

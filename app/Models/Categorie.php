@@ -22,4 +22,8 @@ class Categorie extends Model {
         });
     }
 
+    public function catimages() {
+        return $this->hasMany(Catimage::class, 'category_id');
+    }
+
 }

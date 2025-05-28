@@ -8,7 +8,7 @@ use App\Models\Categorie;
 class CategoryController extends Controller {
 
     public function createCategory() {
-        $categories = Categorie::all();
+        $categories = Categorie::with('catimages')->get();
 		return view('pages.laravel-examples.user-management',compact('categories'));
 	}
 
