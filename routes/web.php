@@ -42,7 +42,6 @@ Route::get('/reset-password/{token}', function ($token) {
 Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
-Route::get('add-category', [ProfileController::class, 'category'])->middleware('auth')->name('add-category');
 Route::post('save-temple', [ProfileController::class, 'saveTemple'])->middleware('auth')->name('save-temple');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('billing', function () {
@@ -67,7 +66,13 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.static-sign-up');
 	})->name('static-sign-up');
 	Route::get('user-management', [CategoryController::class,'createCategory'])->name('user-management');
+	Route::get('add-category', [CategoryController::class, 'category'])->name('add-category');
+	Route::get('update-category/{id}', [CategoryController::class,'updateCategory'])->name('update-category.view');
 	Route::get('delete-category/{id}', [CategoryController::class,'destroy'])->name('delete-category.destroy');
+	Route::post('save-categories', [CategoryController::class, 'saveCategories'])->middleware('auth')->name('save-categories');
+	Route::get('view-category-image/{id}/{catImageId?}', [CategoryController::class,'viewCategoryImage'])->name('view-category-image.view');
+	Route::post('save-temple', [CategoryController::class, 'saveTemple'])->name('save-temple');
+	Route::post('save-image-description', [CategoryController::class, 'saveImageDescription'])->name('save-image-description');
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');

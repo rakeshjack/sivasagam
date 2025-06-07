@@ -16,6 +16,9 @@ class Catimage extends Model
      */
     protected $fillable = [
         'uuid',
+        'name',
+        'description',
+        'address',
         'image_name',
         'category_id',
         'path'

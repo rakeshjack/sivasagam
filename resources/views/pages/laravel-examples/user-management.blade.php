@@ -55,14 +55,29 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        @if ($category->catimages->isNotEmpty())
-                                                                    @foreach ($category->catimages as $image)
+
+                                                    @if ($category->catimages->isNotEmpty())
+                                                            @foreach ($category->catimages as $image)
+                                                            <a href="{{ route('view-category-image.view',['id' => $category->id, 'catImageId' => $image->id]) }}">
+                                                                <img src="{{ config('app.url_dev').'/storage/app/public/'.$image->path }}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                            </a>
+                                                            @endforeach
+                                                    @else
+                                                        <img src="{{ asset('assets') }}/img/team-2.jpg"
+                                                    class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                    @endif
+
+                                                    <!-- @if ($category->catimages->isNotEmpty())
+                                                                @foreach ($category->catimages as $image)
+                                                                    <a href="{{ route('view-category-image.view',['id' => $category->id, 'catImageId' => $image->id]) }}">
                                                                         <img src="{{ asset('storage/' . $image->path) }}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                                    @endforeach
-                                                            @else
-                                                                <img src="{{ asset('assets') }}/img/team-2.jpg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                            @endif
+                                                                    </a>
+                                                                @endforeach
+                                                        @else
+                                                            <img src="{{ asset('assets') }}/img/team-2.jpg"
+                                                        class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        @endif -->
+
                                                     </div>
 
                                                 </div>
@@ -74,12 +89,12 @@
                                                 </div>
                                             </td>
                                             <td class="align-middle">
-                                                <!-- <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="" data-original-title=""
+                                                <a rel="tooltip" class="btn btn-success btn-link"
+                                                    href="{{ route('update-category.view', $category->id) }}" data-original-title=""
                                                     title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
-                                                </a> -->
+                                                </a>
                                                 
                                                 <a href="{{ route('delete-category.destroy', $category->id) }}" type="button" class="btn btn-danger btn-link"
                                                 data-original-title="" title="">

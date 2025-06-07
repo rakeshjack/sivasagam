@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('catimages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uuid')->unique();
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('address')->nullable();
             $table->string('image_name');
             $table->string('path');
             $table->integer('category_id')->nullable();
